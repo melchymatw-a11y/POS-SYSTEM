@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "160442877810",
+    "project_id": "lost-23e65",
+    "storage_bucket": "lost-23e65.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:160442877810:android:ff00474f930ffc78437feb",
+        "android_client_info": {
+          "package_name": "com.example.possystem"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0Xt0BYQ_MNKiu2LYgtG2E-pBzkXPnIbQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

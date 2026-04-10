@@ -7,15 +7,19 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
+import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -28,14 +32,17 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.possystem.R
+import com.example.possystem.data.AuthViewModel
 import com.example.possystem.navigation.ROUTE_LOGIN
 import com.example.possystem.navigation.ROUTE_REGISTER
 
@@ -43,6 +50,8 @@ import com.example.possystem.navigation.ROUTE_REGISTER
 fun LoginScreen(navController: NavController) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    val authViewModel: AuthViewModel= viewModel()
+    val context = LocalContext.current
 
     Box(modifier = Modifier
         .fillMaxSize()
@@ -77,18 +86,29 @@ fun LoginScreen(navController: NavController) {
 
         OutlinedTextField(
             value =email,
-            label = { Text(text ="Enter Email",color = Color.Black,
-                fontSize = 20.sp)},
+            label = { Text(text ="Enter Email",color = Color.Black
+               )},
             onValueChange = {email = it},
-            leadingIcon = {Icon(Icons.Default.Email,contentDescription = null, tint = Color.Black)}
+            leadingIcon = {Icon(Icons.Default.Email,contentDescription = null, tint = Color.Black)},
+            colors = OutlinedTextFieldDefaults.colors(
+                focusedTextColor = Color.Red ,
+                unfocusedTextColor = Color.Black,
+                focusedContainerColor = Color.Transparent,
+                unfocusedContainerColor = Color.Transparent,
+            )
         )
 
         OutlinedTextField(
             value = password,
-            label = {Text(text = "Enter Password",color = Color.Black, fontSize = 20.sp)},
+            label = {Text(text = "Enter Password",color = Color.Black)},
             onValueChange = {password =it},
-            leadingIcon = { Icon(Icons.Default.Lock,contentDescription = null, tint = Color.Black) }
-
+            leadingIcon = { Icon(Icons.Default.Lock,contentDescription = null, tint = Color.Black) },
+            colors = OutlinedTextFieldDefaults.colors(
+                focusedTextColor = Color.Red ,
+                unfocusedTextColor = Color.Black,
+                focusedContainerColor = Color.Transparent,
+                unfocusedContainerColor = Color.Transparent,
+            )
         )
         Row(){
             Text(
@@ -104,6 +124,15 @@ fun LoginScreen(navController: NavController) {
             )
         }
 
+        Spacer(modifier = Modifier.height(24.dp))
+        Button(onClick = {authViewModel.login(
+            email= email,
+            password= password,
+
+            navController= navController,
+            context = context)}) { Text(text = "Login") }
+
+
 
 
 
@@ -117,3 +146,4 @@ fun LoginScreen(navController: NavController) {
 fun LoginScreenPreview(){
     LoginScreen(rememberNavController())
 }
+
