@@ -9,10 +9,13 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
@@ -62,80 +65,127 @@ fun LoginScreen(navController: NavController) {
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.Crop
         )
-    }
 
 
 
-    Column(modifier = Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
-    ) {
-        Image(painter = painterResource(id = R.drawable.airplane_bg),
-            contentDescription = "logo",
-            modifier = Modifier
-                .size(150.dp)
-                .clip(CircleShape)
-                .border(2.dp, Color.White, CircleShape)
-                .shadow(10.dp, CircleShape))
 
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.airplane_bg),
+                contentDescription = "logo",
+                modifier = Modifier
+                    .size(150.dp)
+                    .clip(CircleShape)
+                    .border(2.dp, Color.White, CircleShape)
+                    .shadow(10.dp, CircleShape),
+                contentScale = ContentScale.Crop
 
-        Text(text = "Login Here",
-            fontSize = 33.sp,
-            fontWeight = FontWeight.Bold,
-            color = Color.Red)
-
-        OutlinedTextField(
-            value =email,
-            label = { Text(text ="Enter Email",color = Color.Black
-               )},
-            onValueChange = {email = it},
-            leadingIcon = {Icon(Icons.Default.Email,contentDescription = null, tint = Color.Black)},
-            colors = OutlinedTextFieldDefaults.colors(
-                focusedTextColor = Color.Red ,
-                unfocusedTextColor = Color.Black,
-                focusedContainerColor = Color.Transparent,
-                unfocusedContainerColor = Color.Transparent,
             )
-        )
 
-        OutlinedTextField(
-            value = password,
-            label = {Text(text = "Enter Password",color = Color.Black)},
-            onValueChange = {password =it},
-            leadingIcon = { Icon(Icons.Default.Lock,contentDescription = null, tint = Color.Black) },
-            colors = OutlinedTextFieldDefaults.colors(
-                focusedTextColor = Color.Red ,
-                unfocusedTextColor = Color.Black,
-                focusedContainerColor = Color.Transparent,
-                unfocusedContainerColor = Color.Transparent,
-            )
-        )
-        Row(){
-            Text(
-                text = "Don't have an account?",
-                color = Color.Green
-            )
+            Spacer(modifier = Modifier.height(12.dp))
+
 
             Text(
-                text = "Register Here", fontSize = 20.sp,
-                color = Color.Red,modifier = Modifier.clickable {navController.navigate(
-                    ROUTE_REGISTER
-                )}
+                text = "Login Here",
+                fontSize = 33.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.Red
             )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            androidx.compose.material3.Surface(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .shadow(15.dp, RoundedCornerShape(28.dp)),
+                shape = RoundedCornerShape(28.dp),
+                color = Color.White.copy(alpha = 0.85f)
+            ) {
+                Column(
+                    modifier = Modifier.padding(20.dp), // Give it some breathing room
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                ) {
+
+
+                    OutlinedTextField(
+                        value = email,
+                        label = {
+                            Text(
+                                text = "Enter Email", color = Color.Black
+                            )
+                        },
+                        onValueChange = { email = it },
+                        leadingIcon = {
+                            Icon(
+                                Icons.Default.Email,
+                                contentDescription = null,
+                                tint = Color.Black
+                            )
+                        },
+                        colors = OutlinedTextFieldDefaults.colors(
+                            focusedTextColor = Color.Red,
+                            unfocusedTextColor = Color.Black,
+                            focusedContainerColor = Color.Transparent,
+                            unfocusedContainerColor = Color.Transparent,
+                        )
+                    )
+
+                    OutlinedTextField(
+                        value = password,
+                        label = { Text(text = "Enter Password", color = Color.Black) },
+                        onValueChange = { password = it },
+                        leadingIcon = {
+                            Icon(
+                                Icons.Default.Lock,
+                                contentDescription = null,
+                                tint = Color.Black
+                            )
+                        },
+                        colors = OutlinedTextFieldDefaults.colors(
+                            focusedTextColor = Color.Red,
+                            unfocusedTextColor = Color.Black,
+                            focusedContainerColor = Color.Transparent,
+                            unfocusedContainerColor = Color.Transparent,
+                        )
+                    )
+
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                Row() {
+                    Text(
+                        text = "Don't have an account?",
+                        color = Color.Green
+                    )
+
+                    Text(
+                        text = "Register Here", fontSize = 20.sp,
+                        color = Color.Red, modifier = Modifier.clickable {
+                            navController.navigate(
+                                ROUTE_REGISTER
+                            )
+                        }
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(24.dp))
+                Button(onClick = {
+                    authViewModel.login(
+                        email = email,
+                        password = password,
+
+                        navController = navController,
+                        context = context
+                    )
+                }) { Text(text = "Login") }
+
+            }
+            }
         }
-
-        Spacer(modifier = Modifier.height(24.dp))
-        Button(onClick = {authViewModel.login(
-            email= email,
-            password= password,
-
-            navController= navController,
-            context = context)}) { Text(text = "Login") }
-
-
-
-
-
     }
 
 

@@ -52,6 +52,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.possystem.R
 import com.example.possystem.data.AuthViewModel
 import com.example.possystem.navigation.ROUTE_LOGIN
+import com.example.possystem.ui.theme.screens.login.LoginScreen
 
 @Composable
 fun RegisterScreen(navController: NavController) {
@@ -61,9 +62,8 @@ fun RegisterScreen(navController: NavController) {
     var confirmpassword by remember { mutableStateOf("") }
     var phone by remember { mutableStateOf("") }
 
-    // FIX 1: Context is fine, but ViewModel needs care
     val context = LocalContext.current
-    // We use a try-catch or provide a default to prevent Preview crashes
+
     val authViewModel: AuthViewModel = viewModel()
 
     Box(modifier = Modifier.fillMaxSize()) {
@@ -185,4 +185,10 @@ fun RegisterScreen(navController: NavController) {
             }
         }
     }
+}
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+fun RegisterScreenPreview(){
+    RegisterScreen(rememberNavController())
 }
