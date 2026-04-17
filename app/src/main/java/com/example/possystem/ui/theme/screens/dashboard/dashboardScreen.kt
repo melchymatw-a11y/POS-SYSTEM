@@ -57,6 +57,7 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.possystem.data.AuthViewModel
+import com.example.possystem.navigation.ROUTE_VIEW_PRODUCT
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -141,7 +142,9 @@ fun Dashboard(navController: NavController){
                 }
 
                 Card(
-                    modifier = Modifier.weight(1f),
+                    modifier = Modifier.weight(1f).clickable{
+                        navController.navigate(ROUTE_VIEW_PRODUCT)
+                    },
                     shape = RoundedCornerShape(20.dp),
                     colors = CardDefaults.cardColors(containerColor = Color.Green),
                     elevation = CardDefaults.cardElevation(6.dp)

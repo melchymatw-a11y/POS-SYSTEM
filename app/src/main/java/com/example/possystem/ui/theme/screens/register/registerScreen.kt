@@ -121,7 +121,13 @@ fun RegisterScreen(navController: NavController) {
                         onValueChange = { username = it },
                         leadingIcon = { Icon(Icons.Default.Person, contentDescription = null, tint = Color.Black) },
                         singleLine = true,
-                        modifier = Modifier.fillMaxWidth()
+                        modifier = Modifier.fillMaxWidth(),
+                        colors = OutlinedTextFieldDefaults.colors(
+                            focusedTextColor = Color.Red,
+                            unfocusedTextColor = Color.Black,
+                            focusedContainerColor = Color.Transparent,
+                            unfocusedContainerColor = Color.Transparent,
+                        )
                     )
 
                     OutlinedTextField(
@@ -129,7 +135,14 @@ fun RegisterScreen(navController: NavController) {
                         label = { Text(text = "Enter Email", color = Color.Black) },
                         onValueChange = { email = it },
                         leadingIcon = { Icon(Icons.Default.Email, contentDescription = null, tint = Color.Black) },
-                        modifier = Modifier.fillMaxWidth()
+                        modifier = Modifier.fillMaxWidth(),
+                        colors = OutlinedTextFieldDefaults.colors(
+                            focusedTextColor = Color.Red,
+                            unfocusedTextColor = Color.Black,
+                            focusedContainerColor = Color.Transparent,
+                            unfocusedContainerColor = Color.Transparent,
+                        )
+
                     )
 
                     OutlinedTextField(
@@ -137,7 +150,13 @@ fun RegisterScreen(navController: NavController) {
                         onValueChange = { phone = it },
                         label = { Text("Phone Number", color = Color.Black) },
                         leadingIcon = { Icon(Icons.Default.Phone, contentDescription = null, tint = Color.Black) },
-                        modifier = Modifier.fillMaxWidth()
+                        modifier = Modifier.fillMaxWidth(),
+                        colors = OutlinedTextFieldDefaults.colors(
+                            focusedTextColor = Color.Red,
+                            unfocusedTextColor = Color.Black,
+                            focusedContainerColor = Color.Transparent,
+                            unfocusedContainerColor = Color.Transparent,
+                        )
                     )
 
                     OutlinedTextField(
@@ -146,7 +165,13 @@ fun RegisterScreen(navController: NavController) {
                         onValueChange = { password = it },
                         leadingIcon = { Icon(Icons.Default.Lock, contentDescription = null, tint = Color.Black) },
                         modifier = Modifier.fillMaxWidth(),
-                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+                        colors = OutlinedTextFieldDefaults.colors(
+                            focusedTextColor = Color.Red,
+                            unfocusedTextColor = Color.Black,
+                            focusedContainerColor = Color.Transparent,
+                            unfocusedContainerColor = Color.Transparent,
+                        )
                     )
 
                     OutlinedTextField(
@@ -155,7 +180,266 @@ fun RegisterScreen(navController: NavController) {
                         onValueChange = { confirmpassword = it },
                         leadingIcon = { Icon(Icons.Default.Check, contentDescription = null, tint = Color.Black) },
                         modifier = Modifier.fillMaxWidth(),
-                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+                        colors = OutlinedTextFieldDefaults.colors(
+                            focusedTextColor = Color.Red,
+                            unfocusedTextColor = Color.Black,
+                            focusedContainerColor = Color.Transparent,
+                            unfocusedContainerColor = Color.Transparent,
+                        )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     )
 
                     Spacer(modifier = Modifier.height(24.dp))
